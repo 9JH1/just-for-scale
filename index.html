@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Just For Scale</title>
+    <link rel="icon" type="image/png" href="/img/favicon.png" />
+    <style>
+        :root {
+            --color-primary: hsl(338, 50%, 10%);
+            --color-secondary: hsl(338, 50%, 90%);
+            --color-tertiary: hsl(38, 80%, 80%);
+            --color-accent: hsl(278, 80%, 80%);
+            --background: var(--color-primary);
+            --foreground: var(--color-secondary);
+            --accent: var(--color-tertiary);
+            --disabled: var(--color-accent);
+        }
+
+        body {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            padding: 0px;
+            margin: 0px;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background: var(--background);
+            color: var(--foreground);
+
+            .title {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0px;
+                margin-top: 10vw;
+
+            }
+
+            .subtitle {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0px;
+            }
+
+            .ui {
+                margin-top: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-wrap: wrap;
+
+                #number {
+                    height: 30px;
+                    border: none;
+                    outline: none;
+                    box-sizing: border-box;
+                    background: var(--accent);
+                    color: var(--background);
+                    font-weight: bold;
+
+                }
+
+                #distance {
+                    height: 30px;
+                    border: none;
+                    outline: none;
+                    background: var(--background);
+                    font-weight: bold;
+                    border: 2px solid var(--accent);
+                    border-radius: 5px;
+                    color: var(--accent);
+                    margin-left: 10px;
+                }
+
+                #output {
+                    width: 100%;
+                    text-align: center;
+                }
+            }
+        }
+
+        .comment {
+            color: var(--disabled);
+        }
+
+        .comment-fancy {
+            font-family: 'Times New Roman', Times, serif;
+            font-style: italic;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="title">Just For Scale</h1>
+    <h6 class="comment subtitle">the ultimate distance comparision tool</h6>
+    <div class="ui">
+        <input type="number" name="" id="number" value="100" placeholder="Enter A Number">
+        <select name="cars" id="distance">
+            <option value="1" data-value="millimeter">Millimeters</option>
+            <option value="10" data-value="centimeter">Centimeters</option>
+            <option value="1000" data-value="meter">Meters</option>
+            <option value="1000000" data-value="kilometer">Kilometers</option>
+            <option value="25.4" data-value="inch">Inches</option>
+            <option value="304.8" data-value="foot">Feet</option>
+            <option value="914.4" data-value="yard">Yards</option>
+            <option value="1609344" data-value="mile">Miles</option>
+            <option value="10000" data-value="hectare">Hectares</option>
+            <option value="4046.86" data-value="acre">Acres</option>
+        </select>
+        <br>
+        <p id="output"><span class="comment">enter a value above :D</span></p>
+    </div>
+    <script>
+        const objects = [
+            dddaa
+        ]
+        const number = document.getElementById("number");
+        const output = document.getElementById("output");
+        const selector = document.getElementById("distance");
+        let value = 0;
+        number.addEventListener("keyup", () => {
+            // ${selector.options[selector.selectedIndex].text}
+            console.log(`${number.value * selector.value} - Milimeters`)
+            objects.forEach((item, index) => {
+                if (Math.abs(item[1] - (number.value * selector.value)) < Math.abs(objects[value][1] - (number.value * selector.value))) {
+                    value = index
+                }
+            });
+            output.innerHTML = `${objects[value][2]} <i class="comment comment-fancy">(${objects[value][1] / selector.value} ${selector.options[selector.selectedIndex].text})</i>`
+            console.log(objects[value]);
+        })
+    </script>
+</body>
+
+</html>
